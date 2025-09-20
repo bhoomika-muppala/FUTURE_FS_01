@@ -1,0 +1,1215 @@
+/* Tailwind import (works with tailwind v4) */
+@import "tailwindcss";
+
+/* compatibility directives (safe) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* smooth scroll for anchors */
+html { scroll-behavior: smooth; }
+
+/* global */
+html, body, #root { height: 100%; }
+body {
+  background-color: #071026; /* deep navy background */
+  color: #e6eef8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* neon helpers */
+.neon-text {
+  text-shadow: 0 0 8px rgba(124,58,237,0.9), 0 0 20px rgba(99,102,241,0.45);
+}
+.drop-shadow-neon {
+  filter: drop-shadow(0 8px 28px rgba(124,58,237,0.16));
+}
+
+/* glass card */
+.card-bg {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
+}
+
+/* small helpers */
+.input-glow {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #fff;
+}
+.input-glow:focus {
+  outline: none;
+  box-shadow: 0 6px 24px rgba(124,58,237,0.18), 0 0 8px rgba(124,58,237,0.12);
+  border-color: rgba(124,58,237,0.6);
+}
+.button-neon {
+  background: linear-gradient(90deg,#ff6ea6,#7c3aed,#06b6d4);
+  color: white;
+  box-shadow: 0 10px 30px rgba(124,58,237,0.18);
+}
+.button-ghost {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #fff;
+}
+
+/* small responsive tweaks */
+@media (max-width: 640px) {
+  .container { padding-left: 1rem; padding-right: 1rem; }
+}
+.skill-bar {
+  height: 8px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.skill-bar > i {
+  display: block;
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg,#ff6ea6,#7c3aed,#06b6d4);
+  transition: width .6s cubic-bezier(.2,.8,.2,1);
+  width: 0%;
+}
+/* glowing project card */
+.project-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: all 0.3s ease;
+}
+.project-card:hover {
+  border-color: #a855f7;
+  box-shadow: 0 0 20px rgba(168,85,247,0.4), 0 0 40px rgba(59,130,246,0.25);
+  transform: translateY(-6px);
+}
+
+/* neon pink hover text */
+.text-neon-pink {
+  color: #ff4fd8;
+}
+
+/* neon buttons */
+.neon-button {
+  background: linear-gradient(90deg,#ff6ea6,#7c3aed,#06b6d4);
+  color: white;
+  box-shadow: 0 0 10px rgba(124,58,237,0.6), 0 0 20px rgba(236,72,153,0.4);
+  transition: all 0.3s ease;
+}
+.neon-button:hover {
+  box-shadow: 0 0 25px rgba(124,58,237,0.9), 0 0 50px rgba(236,72,153,0.6);
+  transform: translateY(-2px);
+}
+
+/* outline neon button */
+.neon-outline {
+  border: 1px solid #7c3aed;
+  color: #7c3aed;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+.neon-outline:hover {
+  background: #7c3aed;
+  color: white;
+  box-shadow: 0 0 20px rgba(124,58,237,0.8);
+}
+/* ABOUT SECTION IMPROVEMENTS: gradient border, stronger glass, and float animation */
+.about-wrap {
+  position: relative;
+  padding: 6rem 0;
+}
+
+/* outer visual frame so the card doesn't look like a flat block */
+.about-frame {
+  display: block;
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 2.25rem;
+  border-radius: 1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  box-shadow: 0 18px 50px rgba(2,6,12,0.65);
+  position: relative;
+  overflow: visible;
+}
+
+/* gradient border (thin) */
+.about-frame::before {
+  content: "";
+  position: absolute;
+  inset: -1.5rem;
+  z-index: -1;
+  border-radius: 1.125rem;
+  background: linear-gradient(90deg, rgba(255,110,166,0.10), rgba(124,58,237,0.12), rgba(6,182,212,0.06));
+  filter: blur(28px);
+  opacity: 1;
+}
+
+/* inner card (glass) — stronger contrast and subtle inner gradient */
+.about-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02), 0 10px 40px rgba(0,0,0,0.6);
+  transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s, border-color .28s;
+}
+
+/* hover gives the card a tiny lift and increased glow */
+.about-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(124,58,237,0.22);
+  box-shadow: 0 28px 80px rgba(2,6,12,0.72), 0 0 40px rgba(124,58,237,0.08);
+}
+
+/* title treatment */
+.about-title {
+  font-size: 2.25rem;
+  line-height: 1;
+  margin-bottom: 0.9rem;
+  color: #ff6ea6;
+  text-shadow: 0 6px 36px rgba(124,58,237,0.14), 0 2px 6px rgba(0,0,0,0.6);
+}
+
+/* paragraph text slightly brighter for legibility */
+.about-card p {
+  color: rgba(255,255,255,0.96);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+/* icon list row */
+.about-meta {
+  margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+  color: rgba(255,255,255,0.86);
+}
+
+/* small pin / bulb icons color */
+.about-meta .icon { color: #ff6ea6; margin-right: .6rem; }
+
+/* responsive adjustments */
+@media (max-width: 768px) {
+  .about-frame::before { inset: -0.9rem; filter: blur(18px); }
+  .about-wrap { padding: 3.5rem 0; }
+  .about-title { font-size: 1.9rem; }
+  .about-card { padding: 1.25rem; }
+  .about-meta { grid-template-columns: 1fr; gap: .8rem; }
+}
+/* ABOUT SECTION TITLE NEON */
+.about-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #ff3ea6; /* bright pink base */
+  text-shadow: 
+    0 0 10px rgba(255, 62, 166, 0.9),
+    0 0 20px rgba(124, 58, 237, 0.8),
+    0 0 40px rgba(124, 58, 237, 0.6);
+  animation: neonPulse 2.5s ease-in-out infinite alternate;
+}
+
+/* Pulse animation */
+@keyframes neonPulse {
+  from {
+    text-shadow:
+      0 0 8px rgba(255, 62, 166, 0.7),
+      0 0 18px rgba(124, 58, 237, 0.7),
+      0 0 32px rgba(124, 58, 237, 0.5);
+  }
+  to {
+    text-shadow:
+      0 0 14px rgba(255, 62, 166, 1),
+      0 0 28px rgba(124, 58, 237, 1),
+      0 0 50px rgba(124, 58, 237, 0.9);
+  }
+}
+/* Neon Section Title */
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ff3ea6; /* neon pink base */
+  text-shadow: 
+    0 0 10px rgba(255, 62, 166, 0.9),
+    0 0 20px rgba(124, 58, 237, 0.8),
+    0 0 40px rgba(124, 58, 237, 0.6);
+  animation: neonPulse 2.5s ease-in-out infinite alternate;
+}
+
+/* Pulse animation */
+@keyframes neonPulse {
+  from {
+    text-shadow:
+      0 0 8px rgba(255, 62, 166, 0.7),
+      0 0 18px rgba(124, 58, 237, 0.7),
+      0 0 32px rgba(124, 58, 237, 0.5);
+  }
+  to {
+    text-shadow:
+      0 0 14px rgba(255, 62, 166, 1),
+      0 0 28px rgba(124, 58, 237, 1),
+      0 0 50px rgba(124, 58, 237, 0.9);
+  }
+}
+.skill-bar {
+  height: 8px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.skill-bar > i {
+  display: block;
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg,#ff6ea6,#7c3aed,#06b6d4);
+  transition: width .9s cubic-bezier(.2,.9,.2,1);
+  width: 0%;
+  /* animate to final width when the element mounts/updates */
+}
+/* tiny hover glow for skills cards */
+.skill-hover {
+  transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s, border-color .28s;
+  will-change: transform;
+}
+.skill-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 70px rgba(11,14,22,0.7), 0 0 40px rgba(124,58,237,0.14);
+  border-color: rgba(124,58,237,0.20);
+}
+
+/* skill bar base */
+.skill-bar {
+  height: 10px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: 12px;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* the moving fill is now a motion.i element; keep default height */
+.skill-bar > i, .skill-bar > .motion-i {
+  display: block;
+  height: 100%;
+  border-radius: 9999px;
+  width: 0%;
+}
+
+/* small responsive tweak */
+@media (max-width: 640px) {
+  .skill-hover { padding: 1.1rem; }
+  .skill-bar { height: 8px; }
+}
+.neon-glow {
+  text-shadow: 0 0 5px rgba(255, 0, 255, 0.6),
+               0 0 10px rgba(255, 0, 255, 0.6),
+               0 0 20px rgba(255, 0, 255, 0.5);
+}
+/* Universal Neon Animation */
+@keyframes neon-pulse {
+  0%, 100% {
+    text-shadow: 0 0 6px rgba(255,255,255,0.6), 0 0 12px currentColor, 0 0 24px currentColor;
+  }
+  50% {
+    text-shadow: 0 0 3px rgba(255,255,255,0.6), 0 0 8px currentColor, 0 0 16px currentColor;
+  }
+}
+
+/* Section-specific glow colors */
+.glow-about {
+  color: #ff4da6; /* pink */
+  animation: neon-pulse 2s infinite;
+}
+
+.glow-skills {
+  color: #4da6ff; /* blue */
+  animation: neon-pulse 2s infinite;
+}
+
+.glow-projects {
+  color: #a64dff; /* purple */
+  animation: neon-pulse 2s infinite;
+}
+
+.glow-contact {
+  color: #20e0d2; /* teal */
+  animation: neon-pulse 2s infinite;
+}
+/* Softer Neon Animation */
+@keyframes neon-pulse {
+  0%, 100% {
+    text-shadow: 0 0 3px rgba(255,255,255,0.4),
+                 0 0 6px currentColor,
+                 0 0 12px currentColor;
+  }
+  50% {
+    text-shadow: 0 0 2px rgba(255,255,255,0.4),
+                 0 0 4px currentColor,
+                 0 0 8px currentColor;
+  }
+}
+
+/* Section-specific glow colors (softer now) */
+.glow-about {
+  color: #ff4da6; /* pink */
+  animation: neon-pulse 2s infinite;
+}
+
+.glow-skills {
+  color: #4da6ff; /* blue */
+  animation: neon-pulse 2s infinite;
+}
+
+.glow-projects {
+  color: #a64dff; /* purple */
+  animation: neon-pulse 2s infinite;
+}
+
+.glow-contact {
+  color: #20e0d2; /* teal */
+  animation: neon-pulse 2s infinite;
+}
+/* ---------- Neon + Card + Helpers (paste at end of src/index.css) ---------- */
+
+/* Softer Neon Animation (subtle) */
+@keyframes neon-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 3px rgba(255,255,255,0.38),
+      0 0 6px currentColor,
+      0 0 12px currentColor;
+  }
+  50% {
+    text-shadow:
+      0 0 2px rgba(255,255,255,0.38),
+      0 0 4px currentColor,
+      0 0 8px currentColor;
+  }
+}
+
+/* Section-specific glow colors (soft) */
+.glow-about { color: #ff4da6; animation: neon-pulse 2s infinite; }
+.glow-skills { color: #4da6ff; animation: neon-pulse 2s infinite; }
+.glow-projects { color: #a64dff; animation: neon-pulse 2s infinite; }
+.glow-contact { color: #20e0d2; animation: neon-pulse 2s infinite; }
+
+/* universal small neon helper (if you used .neon-glow elsewhere) */
+.neon-glow {
+  text-shadow:
+    0 0 4px rgba(255,255,255,0.35),
+    0 0 10px rgba(124,58,237,0.18),
+    0 0 22px rgba(6,182,212,0.08);
+}
+
+/* Card background (glass + subtle) used across sections */
+.card-bg {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 14px;
+  padding: 1rem;
+  backdrop-filter: blur(6px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02), 0 14px 50px rgba(2,6,12,0.6);
+}
+
+/* About frame (outer colorful blur / glow) */
+.about-frame {
+  margin: 0 auto;
+  max-width: 1190px;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  position: relative;
+  overflow: visible;
+}
+.about-frame::before {
+  content: "";
+  position: absolute;
+  inset: -1.6rem;
+  z-index: -1;
+  border-radius: 1.1rem;
+  background: linear-gradient(90deg, rgba(255,110,166,0.06), rgba(124,58,237,0.09), rgba(6,182,212,0.03));
+  filter: blur(28px);
+  opacity: 1;
+}
+
+/* smaller about card inside the frame */
+.about-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+  border-radius: 10px;
+  padding: 2rem;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 18px 40px rgba(2,6,12,0.62);
+}
+
+/* hover lift for cards */
+.skill-hover, .card-hover {
+  transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s, border-color .28s;
+  will-change: transform;
+}
+.skill-hover:hover, .card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 70px rgba(11,14,22,0.72), 0 0 40px rgba(124,58,237,0.10);
+  border-color: rgba(124,58,237,0.12);
+}
+
+/* skill bar base + animated fill default */
+.skill-bar {
+  height: 10px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: 12px;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.skill-bar > i {
+  display: block;
+  height: 100%;
+  border-radius: 9999px;
+  width: 0%;
+  transition: width .9s cubic-bezier(.2,.9,.2,1);
+}
+
+/* input glow for contact */
+.input-glow {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.92);
+  outline: none;
+  transition: box-shadow .18s, border-color .18s;
+}
+.input-glow::placeholder { color: rgba(255,255,255,0.5); }
+.input-glow:focus { box-shadow: 0 0 18px rgba(124,58,237,0.10); border-color: rgba(124,58,237,0.18); }
+
+/* neon button */
+.button-neon {
+  background: linear-gradient(90deg,#ff6ea6,#7c3aed,#06b6d4);
+  color: white;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 8px 28px rgba(124,58,237,0.12);
+}
+
+/* small utility shadow used on forms */
+.shadow-neon-sm { box-shadow: 0 10px 40px rgba(2,6,12,0.6); }
+
+/* responsive tweaks */
+@media (max-width: 768px) {
+  .about-frame::before { inset: -0.9rem; filter: blur(18px); }
+  .about-frame { padding: 1.25rem; }
+  .about-card { padding: 1rem; }
+  .skill-bar { height: 8px; }
+}
+/* Neon Pulse Animation */
+@keyframes neon-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 5px rgba(255,255,255,0.4),
+      0 0 12px currentColor,
+      0 0 24px currentColor;
+  }
+  50% {
+    text-shadow:
+      0 0 3px rgba(255,255,255,0.3),
+      0 0 8px currentColor,
+      0 0 18px currentColor;
+  }
+}
+
+/* Section-specific glowing titles */
+.glow-about {
+  color: #ff4da6;
+  animation: neon-pulse 2.5s infinite ease-in-out;
+}
+
+.glow-skills {
+  color: #4da6ff;
+  animation: neon-pulse 2.5s infinite ease-in-out;
+}
+
+.glow-projects {
+  color: #a64dff;
+  animation: neon-pulse 2.5s infinite ease-in-out;
+}
+
+.glow-contact {
+  color: #20e0d2;
+  animation: neon-pulse 2.5s infinite ease-in-out;
+}
+/* ---------------- About section: frame + neon + card helpers ---------------- */
+
+/* Smooth neon pulse used by section headings */
+@keyframes neon-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 5px rgba(255,255,255,0.38),
+      0 0 12px currentColor,
+      0 0 24px currentColor;
+  }
+  50% {
+    text-shadow:
+      0 0 3px rgba(255,255,255,0.32),
+      0 0 8px currentColor,
+      0 0 16px currentColor;
+  }
+}
+
+/* About-specific glow for heading (soft + animated) */
+.glow-about {
+  color: #ff4da6;
+  animation: neon-pulse 2.5s infinite ease-in-out;
+  /* keep text crisp */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Outer colorful blurred frame behind the about card */
+.about-frame {
+  position: relative;
+  max-width: 1200px;
+  margin: 2.5rem auto;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  overflow: visible;
+  display: block;
+}
+.about-frame::before {
+  content: "";
+  position: absolute;
+  inset: -1.8rem;
+  z-index: -2;
+  border-radius: 1.1rem;
+  background: linear-gradient(110deg,
+    rgba(255,77,166,0.06) 0%,
+    rgba(124,58,237,0.06) 45%,
+    rgba(6,182,212,0.04) 100%);
+  filter: blur(34px);
+  opacity: 1;
+  transition: filter .6s, opacity .6s;
+}
+
+/* subtle darker ring to give depth */
+.about-frame::after {
+  content: "";
+  position: absolute;
+  inset: -0.5rem;
+  z-index: -1;
+  border-radius: 1rem;
+  background: rgba(0,0,0,0.12);
+  filter: blur(10px);
+}
+
+/* Inner about card (glass + subtle border + shadow) */
+.about-card {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 18px 50px rgba(2,6,12,0.6), inset 0 1px 0 rgba(255,255,255,0.01);
+  backdrop-filter: blur(6px);
+}
+
+/* smaller variant for tight screens */
+@media (max-width: 768px) {
+  .about-frame { padding: 1rem; }
+  .about-frame::before { inset: -1.1rem; filter: blur(22px); }
+  .about-card { padding: 1rem; }
+}
+
+/* utility to slightly lift the card on hover to feel alive */
+.about-card:hover {
+  transform: translateY(-6px);
+  transition: transform .32s cubic-bezier(.2,.9,.2,1), box-shadow .32s;
+  box-shadow: 0 30px 70px rgba(2,6,12,0.7), 0 0 30px rgba(124,58,237,0.06);
+}
+.glow-about {
+  color: #ff4da6;
+  font-weight: 800;
+  font-size: 2rem; /* base size */
+  text-shadow:
+    0 0 6px rgba(255, 77, 166, 0.8),
+    0 0 14px rgba(255, 77, 166, 0.6),
+    0 0 26px rgba(255, 77, 166, 0.4);
+  animation: neon-pulse 2.5s infinite ease-in-out;
+}
+@media (min-width: 768px) {
+  .glow-about {
+    font-size: 2.5rem; /* same as Skills on desktop */
+  }
+}
+/* Soft glowing effect for navbar name */
+.drop-shadow-glow {
+  text-shadow: 
+    0 0 6px rgba(255, 0, 200, 0.6),
+    0 0 12px rgba(180, 0, 255, 0.5),
+    0 0 18px rgba(100, 200, 255, 0.4);
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    text-shadow: 
+      0 0 6px rgba(255, 0, 200, 0.7),
+      0 0 14px rgba(180, 0, 255, 0.6),
+      0 0 20px rgba(100, 200, 255, 0.5);
+  }
+  50% {
+    text-shadow: 
+      0 0 10px rgba(255, 0, 200, 0.9),
+      0 0 20px rgba(180, 0, 255, 0.8),
+      0 0 28px rgba(100, 200, 255, 0.7);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s infinite;
+}
+/* src/components/header.css */
+
+/* glassy translucent header */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  backdrop-filter: blur(8px);                 /* glass blur */
+  background: rgba(109,40,217,0.80);          /* purple translucent */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* brand gradient + soft neon glow */
+.brand {
+  font-weight: 800;
+  font-size: 1.125rem;
+  background: linear-gradient(90deg, #ff63a5, #8b5cf6, #34d3e6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    0 0 6px rgba(255,99,165,0.55),
+    0 0 12px rgba(139,92,246,0.45);
+  transition: text-shadow .35s ease, transform .2s ease;
+}
+
+/* breathing glow animation */
+@keyframes brandPulse {
+  0%,100% { text-shadow: 0 0 6px rgba(255,99,165,0.55), 0 0 12px rgba(139,92,246,0.45); }
+  50%     { text-shadow: 0 0 10px rgba(255,99,165,0.85), 0 0 22px rgba(139,92,246,0.75); }
+}
+.brand { animation: brandPulse 3s infinite; }
+
+/* nav link baseline + underline pseudo element */
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  padding: 0.15rem 0;
+  transition: color .22s ease, text-shadow .22s ease;
+}
+
+/* underline that grows on hover */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 6px;
+  transition: width .28s ease;
+}
+
+/* hover color + glow per item */
+.nav-link:hover { color: #ff63a5; text-shadow: 0 0 8px rgba(255,99,165,0.6); }
+.nav-link:nth-child(2):hover { color: #ff63a5; } /* About */
+.nav-link:nth-child(3):hover { color: #4da6ff; } /* Skills */
+.nav-link:nth-child(4):hover { color: #a64dff; } /* Projects */
+.nav-link:nth-child(5):hover { color: #20e0d2; } /* Contact */
+
+.nav-link:hover::after { width: 100%; }
+
+/* responsive adjustments */
+@media (max-width: 640px) {
+  .brand { font-size: 1rem; }
+  .site-header .container { padding-left: 1rem; padding-right: 1rem; }
+}
+html {
+  scroll-behavior: smooth;
+}
+/* Text glow effect for site title */
+@keyframes text-glow {
+  0%, 100% {
+    text-shadow: 0 0 4px #ff77e9, 0 0 10px #a855f7, 0 0 20px #60a5fa;
+  }
+  50% {
+    text-shadow: 0 0 8px #ff4fd8, 0 0 20px #9333ea, 0 0 30px #3b82f6;
+  }
+}
+
+.animate-text-glow {
+  animation: text-glow 3s ease-in-out infinite;
+}
+/* ---------- Neon / shadows ---------- */
+
+/* subtle floating animation for portrait */
+@keyframes float-slow {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+/* main neon text (used by section headings & hero) */
+/* adjust spread/opacity to taste */
+.neon-text {
+  text-shadow:
+    0 2px 0 rgba(0,0,0,0.6),
+    0 6px 18px rgba(124,58,237,0.24),
+    0 14px 40px rgba(124,58,237,0.12);
+}
+
+/* Hero portrait shadow */
+.shadow-neon-md {
+  box-shadow: 0 10px 30px rgba(99,102,241,0.12), 0 2px 8px rgba(0,0,0,0.6);
+}
+
+/* buttons & glows */
+.shadow-resume {
+  box-shadow: 0 8px 30px rgba(124,58,237,0.12), inset 0 -6px 20px rgba(255,255,255,0.06);
+}
+.shadow-resume-strong {
+  box-shadow: 0 20px 60px rgba(136, 33, 133, 0.22), 0 8px 30px rgba(59,130,246,0.06);
+}
+
+/* subtle glassy contact hover */
+.shadow-contact {
+  box-shadow: 0 10px 40px rgba(99,102,241,0.08), 0 2px 8px rgba(0,0,0,0.5);
+}
+
+/* social icon glows (Tailwind can't represent complex drop-shadow easily) */
+.drop-shadow-linkedin:hover, .drop-shadow-linkedin,
+.drop-shadow-github:hover, .drop-shadow-github {
+  transition: filter 220ms ease, transform 160ms ease;
+}
+.drop-shadow-linkedin:hover {
+  filter: drop-shadow(0 8px 18px rgba(59,130,246,0.65));
+}
+.drop-shadow-github:hover {
+  filter: drop-shadow(0 8px 18px rgba(255,255,255,0.6));
+}
+
+/* make resume button pulse a little (optional) */
+@keyframes resume-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.01); }
+  100% { transform: scale(1); }
+}
+/* apply only on hover (keeps perf good) */
+.shadow-resume:hover { animation: resume-pulse 900ms ease-in-out 1; }
+
+/* small helpers for consistent glassy look */
+.bg-glass {
+  background-color: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
+}
+
+/* responsive tweaks for hero text sizing (optional) */
+@media (max-width: 640px) {
+  .neon-text { text-shadow: 0 3px 10px rgba(124,58,237,0.22); }
+}
+/* card background (glassy, slightly lifted) */
+.card-bg{
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.02),
+    0 8px 30px rgba(2,6,23,0.6);
+  backdrop-filter: blur(6px);
+}
+
+/* track for skill bar (dark rail) */
+.skill-bar-track{
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* fill for skill bar: colorful gradient */
+.skill-bar-fill{
+  background: linear-gradient(90deg, #ff5fa2, #7c3aed, #06b6d4);
+  width: 0; /* animated by Framer */
+  height: 100%;
+}
+
+/* small neon drop for section headings */
+.drop-neon-sm {
+  text-shadow:
+    0 2px 0 rgba(0,0,0,0.6),
+    0 6px 18px rgba(124,58,237,0.15);
+}
+
+/* accessibility helper (screen-reader only) */
+.sr-only{
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden; clip: rect(1px,1px,1px,1px);
+  white-space: nowrap; border: 0; padding: 0; margin: -1px;
+}
+/* neon title (slight glow) */
+.neon-title {
+  text-shadow:
+    0 2px 0 rgba(0,0,0,0.6),
+    0 6px 18px rgba(199, 62, 163, 0.12),
+    0 0 18px rgba(199, 62, 163, 0.18);
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+/* card background that fits your dark neon theme */
+.card-bg {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow:
+    0 8px 40px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.01);
+}
+
+/* subtle hover shadow for cards */
+.hover\:shadow-skill:hover {
+  box-shadow:
+    0 18px 50px rgba(80, 40, 140, 0.18),
+    inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+/* small square icon badge */
+.icon-badge {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.9);
+}
+
+/* responsive tweak for small screens */
+@media (max-width: 640px) {
+  .neon-title { font-size: 2rem; }
+}
+/* Neon Glow Animation */
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow: 0 0 5px currentColor,
+                 0 0 10px currentColor,
+                 0 0 20px currentColor,
+                 0 0 40px currentColor;
+  }
+  50% {
+    text-shadow: 0 0 10px currentColor,
+                 0 0 20px currentColor,
+                 0 0 40px currentColor,
+                 0 0 80px currentColor;
+  }
+}
+
+/* Universal neon-glow class */
+.animate-neon-glow {
+  animation: neonPulse 2.5s infinite;
+}
+
+/* Section-specific colors */
+.about-title {
+  color: #ff4ecf; /* Pink Glow */
+}
+
+.skills-title {
+  color: #4fc3f7; /* Blue Glow */
+}
+
+.projects-title {
+  color: #a78bfa; /* Purple Glow */
+}
+
+.contact-title {
+  color: #2dd4bf; /* Teal Glow */
+}
+/* ---------- Neon / Glow & Card styling ---------- */
+
+/* Neon pulse keyframes for titles */
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 6px rgba(255,255,255,0.08),
+      0 0 10px currentColor,
+      0 0 20px rgba(0,0,0,0);
+  }
+  50% {
+    text-shadow:
+      0 0 8px rgba(255,255,255,0.06),
+      0 0 18px currentColor,
+      0 0 42px rgba(0,0,0,0);
+  }
+}
+
+/* universal neon glow on titles (small subtle animation) */
+.animate-neon-glow {
+  animation: neonPulse 2.4s ease-in-out infinite;
+  /* small smoothing */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* per-section glow colors (these set the 'currentColor' used by text-shadow) */
+.about-title { color: #ff4ecf; }   /* pink */
+.skills-title { color: #4fc3f7; }  /* blue */
+.projects-title { color: #a78bfa; }/* purple */
+.contact-title { color: #2dd4bf; } /* teal */
+
+/* card / panel background used across components */
+.card-bg {
+  background: rgba(255,255,255,0.02); /* subtle inner */
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 2rem;
+  box-shadow:
+    0 6px 18px rgba(10,12,20,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+/* subtle larger container "stacked-ghost" for about section (layered shadow) */
+.about-stack {
+  position: relative;
+  padding: 3rem 0;
+}
+.about-stack::before,
+.about-stack::after {
+  content: "";
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  height: 100%;
+  border-radius: 14px;
+  pointer-events: none;
+}
+.about-stack::before {
+  top: -8px;
+  background: linear-gradient(180deg, rgba(167,139,250,0.02), rgba(0,0,0,0.02));
+  box-shadow: 0 14px 40px rgba(167,139,250,0.06);
+  transform: translateY(-8px);
+}
+.about-stack::after {
+  top: 10px;
+  background: linear-gradient(180deg, rgba(255,78,207,0.01), rgba(0,0,0,0.02));
+  box-shadow: 0 28px 60px rgba(0,0,0,0.35);
+  transform: translateY(8px);
+  opacity: 0.85;
+}
+
+/* neon button shadow for primary button */
+.shadow-neon-md {
+  box-shadow:
+    0 10px 26px rgba(100,50,180,0.08),
+    0 2px 8px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+/* small floating animation used on portrait */
+@keyframes floatSlow {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+.animate-float-slow { animation: floatSlow 4s ease-in-out infinite; }
+
+/* skill bar base + fill */
+.skill-bar {
+  height: 8px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 999px;
+  margin-top: 14px;
+  overflow: hidden;
+}
+.skill-bar > i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff6fb8, #9b59ff 45%, #2bd4e4);
+  box-shadow: 0 6px 16px rgba(120,80,170,0.12);
+  transition: width 1s cubic-bezier(.2,.9,.2,1);
+}
+
+/* hover glow for skill card */
+.skill-card-hover:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.6), 0 6px 22px rgba(120,60,200,0.06);
+  transition: transform 280ms ease, box-shadow 280ms ease;
+}
+
+/* input glow used in contact form fields */
+.input-glow {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.03);
+  color: #e6eef8;
+}
+.button-neon {
+  background: linear-gradient(90deg,#ff6fb8,#9b59ff,#2bd4e4);
+  color: white;
+}
+
+/* small niceties for icons-in-box */
+.icon-box {
+  width: 52px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.03);
+  color: #f3f4f6;
+}
+.skills-title {
+  color: #38bdf8; /* a brighter sky blue */
+  text-shadow: 
+    0 0 5px #38bdf8,
+    0 0 12px #38bdf8,
+    0 0 20px rgba(56,189,248,0.7);
+}
+/* Neon section title — gradient fill + softer glow */
+.neon-title {
+  /* gradient fill instead of plain white */
+  background: linear-gradient(90deg, #ff6aa2 0%, #c86dd7 50%, #3dd3e3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* lighter neon glow */
+  text-shadow:
+    0 4px 12px rgba(59, 10, 79, 0.20),
+    0 8px 30px rgba(197, 69, 191, 0.12);
+  /* size & weight will still be controlled by Tailwind classes */
+}
+
+/* card base + hover glow */
+.card-bg {
+  background: rgba(255,255,255,0.02); /* subtle card base */
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+}
+
+/* more pronounced neon hover rim */
+.card-hover-glow {
+  transition: box-shadow 260ms ease, transform 180ms ease;
+}
+.card-hover-glow:hover {
+  box-shadow:
+    0 6px 24px rgba(60, 20, 120, 0.18),
+    0 0 30px rgba(200, 80, 200, 0.10),
+    inset 0 1px 0 rgba(255,255,255,0.02);
+  transform: translateY(-6px);
+}
+
+/* subtle skill icon badge */
+.icon-badge {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.icon-badge:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(124,58,237,0.12);
+}
+
+/* neon small shadow used in gradient buttons / cards */
+.shadow-neon-sm {
+  box-shadow: 0 8px 30px rgba(124,58,237,0.06);
+}
+
+/* skill bar track */
+.skill-track {
+  background: rgba(255,255,255,0.04);
+}
+
+/* progress fill already has inline gradient in JS, but ensure rounding */
+.skill-fill {
+  border-radius: 999px;
+}
+
+/* reduced-intensity neon for header link text (if you want) */
+.header-neon {
+  color: rgba(255,255,255,0.95);
+  text-shadow: 0 2px 8px rgba(124,58,237,0.12);
+}
+/* --------------------------------------
+   Neon title: gradient fill + soft glow
+   Usage: <h2 className="neon-title neon-purple">Projects</h2>
+   --------------------------------------*/
+.neon-title {
+  --n1: #ff6aa2;    /* pink */
+  --n2: #c86dd7;    /* purple */
+  --n3: #3dd3e3;    /* cyan */
+
+  display: inline-block;
+  font-weight: 800;
+
+  /* gradient text (keeps color vivid without pure white) */
+  background: linear-gradient(90deg, var(--n1), var(--n2), var(--n3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* layered soft neon glow */
+  text-shadow:
+    0 2px 0 rgba(0,0,0,0.6),
+    0 8px 20px rgba(0,0,0,0.45),
+    0 8px 30px var(--n2),   /* main colored glow */
+    0 28px 60px rgba(0,0,0,0.35);
+
+  /* small transform/opacity transition if you animate later */
+  transition: text-shadow .18s ease, transform .18s ease;
+}
+
+/* small size adjustments for different breakpoints if needed */
+.neon-title.lg { font-size: 3.5rem; } /* optional */
+
+/* Per-section color presets — pick one and apply as extra class */
+.neon-pink   { --n1:#ff6aa2; --n2:#ff5aa8; --n3:#ffa6d6; }
+.neon-purple { --n1:#c86dd7; --n2:#9b5cf1; --n3:#7b5cff; }
+.neon-blue   { --n1:#5fd3ff; --n2:#2fb8ff; --n3:#1e90ff; }
+.neon-teal   { --n1:#3dd3e3; --n2:#70e1d0; --n3:#6af0c6; }
+
+/* optional slightly stronger glow on hover */
+.neon-title:hover {
+  text-shadow:
+    0 4px 0 rgba(0,0,0,0.62),
+    0 12px 30px rgba(0,0,0,0.45),
+    0 10px 36px rgba(200,80,200,0.12),
+    0 38px 80px rgba(0,0,0,0.34);
+}
+
+/* Make sure section headings are centered and spaced nicely */
+.section-heading-center {
+  display: block;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+/* Solid-color neon title */
+.neon-solid {
+  font-weight: 800;
+  color: #c86dd7; /* pick your main color: purple */
+  text-shadow:
+    0 0 6px rgba(200, 109, 215, 0.7),
+    0 0 16px rgba(200, 109, 215, 0.6),
+    0 0 28px rgba(200, 109, 215, 0.5),
+    0 0 42px rgba(200, 109, 215, 0.4);
+}
