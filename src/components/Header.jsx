@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false); // <-- mobile menu state
 
   useEffect(() => {
     function onScroll() {
@@ -20,8 +21,7 @@ export default function Header() {
     WebkitTextFillColor: "transparent",
     backgroundClip: "text",
     color: "transparent",
-    textShadow:
-      "0 0 6px rgba(255,99,165,0.55), 0 0 12px rgba(139,92,246,0.45)",
+    textShadow: "0 0 6px rgba(255,99,165,0.55), 0 0 12px rgba(139,92,246,0.45)",
     transition: "text-shadow .35s ease, transform .18s ease"
   };
 
@@ -68,13 +68,61 @@ export default function Header() {
           </a>
         </nav>
 
-        {/* Mobile hamburger (placeholder) */}
+        {/* Mobile hamburger */}
         <div className="md:hidden">
-          <button aria-label="menu" className="p-2 rounded bg-white/6 hover:bg-white/10">
+          <button
+            aria-label="menu"
+            aria-expanded={open}
+            onClick={() => setOpen((s) => !s)}
+            className="p-2 rounded bg-white/6 hover:bg-white/10"
+            type="button"
+          >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
-              <path d="M3 6h18M3 12h18M3 18h18" strokeLinecap="round" strokeLinejoin="round"/>
+              <path
+                className={`transition-transform duration-200 ${open ? "transform rotate-45 translate-y-0.5" : ""}`}
+                d="M3 6h18M3 12h18M3 18h18"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </button>
+        </div>
+      </div>
+
+      {/* Mobile menu overlay */}
+      <div
+        className={`md:hidden fixed inset-0 z-40 transition-opacity duration-200 ${
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        onClick={() => setOpen(false)} // clicking backdrop closes
+      >
+        {/* Backdrop */}
+        <div className="absolute inset-0 bg-black/50" />
+
+        {/* Centered menu panel */}
+        <div
+          className="relative container mx-auto px-6 py-8 flex justify-center"
+          onClick={(e) => e.stopPropagation()} // avoid closing when interacting inside panel
+        >
+          <div className="w-full max-w-sm bg-[#0b1116]/95 backdrop-blur rounded-lg p-6 shadow-neon">
+            <nav className="flex flex-col gap-4 text-center">
+              <a href="#home" onClick={() => setOpen(false)} className="block py-2 text-lg">
+                Home
+              </a>
+              <a href="#about" onClick={() => setOpen(false)} className="block py-2 text-lg">
+                About
+              </a>
+              <a href="#skills" onClick={() => setOpen(false)} className="block py-2 text-lg">
+                Skills
+              </a>
+              <a href="#projects" onClick={() => setOpen(false)} className="block py-2 text-lg">
+                Projects
+              </a>
+              <a href="#contact" onClick={() => setOpen(false)} className="block py-2 text-lg">
+                Contact
+              </a>
+            </nav>
+          </div>
         </div>
       </div>
     </header>
