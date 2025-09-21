@@ -1,5 +1,5 @@
 /* Tailwind import (works with tailwind v4) */
-@import "tailwindcss";
+
 
 /* compatibility directives (safe) */
 @tailwind base;
