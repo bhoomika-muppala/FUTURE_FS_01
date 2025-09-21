@@ -1,3 +1,7 @@
+/* Tailwind import (works with tailwind v4) */
+
+
+/* compatibility directives (safe) */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
